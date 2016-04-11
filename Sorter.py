@@ -3,20 +3,15 @@ import math
 import random
 import sys
 
-# donorArray = [["Ryan Coady", "Ryan Coady", "0", "Database coordinator"],
-#              ["Amber Dalgaard", "Stuff", "751", "Donating to an ILS fundraiser"]]
-
 
 # Opens Donor file and reads it into an array
 with open('2016 Donation Thank Yous.csv', 'rb') as f:
     reader = csv.reader(f)
     donorArray = list(reader)
 
-
 donationLevel = 250
 fullDonorArray = []
-leaderArray = [['Ryan Coady', '1'], ['Amber Dalgaard', '2'], ['Hopper', '2'], ['Kristin', '3'], ['Jon', '4'],
-               ['Jon', '4'], ['Leah', '5'], ['Jenna', '5'], ['Annalisa', '7']]
+multipleDonor = []
 
 for donor in donorArray:
     # Checks for the contributor and contact being the same person
@@ -36,22 +31,27 @@ for donor in donorArray:
     else:
         print "The total amount that", donor[0], "donated is $" + donor[2], "and should receive", amount, "thank you's"
 
+    # Array for Multiple thank yous
+    if amount > 1:
+        multipleDonor.append([donor[0], donor[1]])
+
     while amount > 0:
         amount -= 1
         fullDonorArray.append([donor[0], donor[1], donor[3], amount + 1])
 
 print fullDonorArray
-random.shuffle(leaderArray)
-print leaderArray
+# print leaderArray
 print len(fullDonorArray)
 
 # Writes everything in the fullDonorArray to a csv file
-with open("output.csv", "wb") as f:
+with open("Full Donor.csv", "wb") as f:
     writer = csv.writer(f)
     writer.writerow(["Company", "Contact", "Reason for Thanking", "Count"])
     writer.writerows(fullDonorArray)
 
-# To Do
-# Read in csv for donors
-# Read in csv for leaders
-# Assign leaders to donors
+
+# TODO Read in full CSV for donors
+# TODO Make spreadsheet for Mailing labels
+# TODO Remove staff from spreadsheet for mailing labels
+# TODO Read in csv for leaders
+# TODO Assign leaders to donors
