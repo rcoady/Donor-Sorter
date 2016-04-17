@@ -5,11 +5,12 @@ import sys
 
 
 # Opens Donor file and reads it into an array
-with open('2016 Donation Thank Yous.csv', 'rb') as f:
+with open('testDonors2013.csv', 'rb') as f:
     reader = csv.reader(f)
     donorArray = list(reader)
 
 donationLevel = 250
+addressArray = []
 fullDonorArray = []
 multipleDonor = []
 
@@ -20,6 +21,10 @@ for donor in donorArray:
     if donor[2] == '':
         donor[2] = 0
 
+    # Writes donor name, contact, and address to an array
+    if donor[4] != "Staff":
+        addressArray.append([donor[0], donor[1], donor[5], donor[6], donor[7], donor[8]])
+
     # How many thank you's a person should receive
     donation = float(donor[2])
     amount = int(math.ceil(donation / donationLevel))
@@ -27,9 +32,6 @@ for donor in donorArray:
     # Catches edge case if the donation is zero or blank
     if amount == 0:
         amount = 1
-        print donor[0] + " made an in-kind donation and should receive", amount, "thank you"
-    else:
-        print "The total amount that", donor[0], "donated is $" + donor[2], "and should receive", amount, "thank you's"
 
     # Array for Multiple thank yous
     if amount > 1:
@@ -39,9 +41,7 @@ for donor in donorArray:
         amount -= 1
         fullDonorArray.append([donor[0], donor[1], donor[3], amount + 1])
 
-print fullDonorArray
-# print leaderArray
-print len(fullDonorArray)
+
 
 # Writes everything in the fullDonorArray to a csv file
 with open("Full Donor.csv", "wb") as f:
@@ -49,9 +49,10 @@ with open("Full Donor.csv", "wb") as f:
     writer.writerow(["Company", "Contact", "Reason for Thanking", "Count"])
     writer.writerows(fullDonorArray)
 
+with open("Address Labels.csv", "wb") as f:
+    writer = csv.writer(f)
+    writer.writerow(["Company", "Contact", "Address", "City", "State", "Zip"])
+    writer.writerows(addressArray)
 
-# TODO Read in full CSV for donors
-# TODO Make spreadsheet for Mailing labels
-# TODO Remove staff from spreadsheet for mailing labels
 # TODO Read in csv for leaders
 # TODO Assign leaders to donors
