@@ -8,8 +8,9 @@ with open('testDonors2013.csv', 'rb') as f:
     donorArray = list(reader)
 
 donors.filtername(donorArray)
-donors.donoraddress(donors.cleanedArray)
-donors.calculatethankyouamount(donors.cleanedArray)
+donors.lookup(donors.cleanedArray)
+donors.donoraddress(donors.test_array)
+donors.calculatethankyouamount(donors.test_array)
 
 
 def writefile(filename, header, array):
@@ -40,7 +41,7 @@ for donor in donors.fullDonorArray:
     count += 1
 
 writefile("Full List.csv",
-          ["Company", "Contact", "Reason for Thanking", "Count", "Leader First", "Leader Last", "Group"],
+          ["Company", "Contact", "Reason for Thanking", "Count", "Lookup", "Leader First", "Leader Last", "Group"],
           new_array)
 
 # TODO Assign leaders to donors
