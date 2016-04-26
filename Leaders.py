@@ -38,11 +38,4 @@ with open('testLeaders2013.csv', 'rb') as f:
     reader = csv.reader(f)
     leaderArray = list(reader)
 
-# Strips extra spaces from the leader first and last name
-#namecleaner()
 
-# Writes the leaders to fullLeaderArray while the amount has not been fulfilled
-#needaname(246)
-
-# Writes everything in the fullDonorArray to a csv file
-#write_leader_file(fullLeaderArray)
