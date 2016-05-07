@@ -39,10 +39,27 @@ count = 0
 for donor in donors.fullDonorArray:
     new_array.append(donors.fullDonorArray[count] + Leaders.fullLeaderArray[count])
     count += 1
+final_array = []
+for donor in new_array:
+    if donor[4] == '':
+        if int(donor[7]) < 4:
+            donor[4] = '1'
+        elif int(donor[7]) < 7:
+            donor[4] = '2'
+        elif int(donor[7]) < 10:
+            donor[4] = '3'
+        elif int(donor[7]) < 13:
+            donor[4] = '4'
+        elif int(donor[7]) < 16:
+            donor[4] = '5'
+    final_array.append([donor[0], donor[1], donor[2], donor[3], donor[4], donor[5], donor[6], donor[7]])
+
+
+
 
 writefile("Full List.csv",
           ["Company", "Contact", "Reason for Thanking", "Count", "Lookup", "Leader First", "Leader Last", "Group"],
-          new_array)
+          final_array)
 
 # TODO Assign leaders to donors
 # TODO Clean donor file of extra spaces
