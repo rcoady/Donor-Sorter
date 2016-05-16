@@ -1,5 +1,6 @@
 import csv
 import math
+import os
 
 donationLevel = 250
 addressArray = []
@@ -23,7 +24,7 @@ def donoraddress(donorfile):
         if donor[4] != "Staff":
             addressArray.append([donor[0], donor[1], donor[5], donor[6], donor[7], donor[8], donor[9]])
 
-    with open("Address Labels.csv", "wb") as f:
+    with open(os.path.join("Output", "Address Labels.csv"), "wb") as f:
         address_writer = csv.writer(f)
         address_writer.writerow(["Company", "Contact", "Address", "City", "State", "Zip", "Lookup"])
         address_writer.writerows(addressArray)

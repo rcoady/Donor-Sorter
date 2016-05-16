@@ -14,14 +14,14 @@ donors.donoraddress(donors.test_array)
 donors.calculatethankyouamount(donors.test_array)
 
 
-def writefile(filename, header, array):
-    with open(filename, "wb") as f:
+def writefile(folder, filename, header, array):
+    with open(os.path.join(folder, filename), "wb") as f:
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(array)
 
 
-writefile("Full Donor.csv", ["Company", "Contact", "Reason for Thanking", "Count"], donors.fullDonorArray)
+writefile("Output", "Full Donor.csv", ["Company", "Contact", "Reason for Thanking", "Count"], donors.fullDonorArray)
 
 print "The full donor list has been made"
 
@@ -55,10 +55,7 @@ for donor in new_array:
             donor[4] = '5'
     final_array.append([donor[0], donor[1], donor[2], donor[3], donor[4], donor[5], donor[6], donor[7]])
 
-
-
-
-writefile("Full List.csv",
+writefile("Output", "Full List.csv",
           ["Company", "Contact", "Reason for Thanking", "Count", "Lookup", "Leader First", "Leader Last", "Group"],
           final_array)
 
