@@ -1,5 +1,6 @@
 import csv
 import math
+import os
 import random
 import sys
 import sqlite3
@@ -29,13 +30,13 @@ def needaname(length):
 
 
 def write_leader_file(leader_array):
-    with open("Leaders.csv", "wb") as f:
+    with open(os.path.join('Output', 'Leaders.csv'), "wb") as f:
         writer = csv.writer(f)
-        writer.writerow(["FirstName", "Last Name", "Group"])
+        writer.writerow(["First Name", "Last Name", "Group"])
         writer.writerows(leader_array)
 
 
 # Opens Leader file and reads it into an array
-with open('testLeaders2013.csv', 'rb') as f:
+with open(os.path.join('Input', 'testLeaders2013.csv'), 'rb') as f:
     reader = csv.reader(f)
     leaderArray = list(reader)

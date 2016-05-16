@@ -1,9 +1,10 @@
 import csv
 import Leaders
 import donors
+import os
 
 # Opens Donor file and reads it into an array
-with open('testDonors2013.csv', 'rb') as f:
+with open(os.path.join('Input', 'testDonors2013.csv'), 'rb') as f:
     reader = csv.reader(f)
     donorArray = list(reader)
 
@@ -24,7 +25,7 @@ writefile("Full Donor.csv", ["Company", "Contact", "Reason for Thanking", "Count
 
 print "The full donor list has been made"
 
-with open('testLeaders2013.csv', 'rb') as f:
+with open(os.path.join('Input', 'testLeaders2013.csv'), 'rb') as f:
     reader = csv.reader(f)
     leaderArray = list(reader)
 
