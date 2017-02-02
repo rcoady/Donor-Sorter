@@ -12,8 +12,8 @@ fullLeaderArray = []
 
 def namecleaner():
     for leader in leaderArray:
-        leader[0] = leader[0].strip()
-        leader[1] = leader[1].strip()
+        leader[0] = leader[0].strip().title()
+        leader[1] = leader[1].strip().title()
 
 
 def needaname(length):
