@@ -2,9 +2,32 @@ import csv
 import Leaders
 import donors
 import os
+import sys
+
+donors_file = raw_input("What file would you like to use for the donors? : ")
+leaders_file = raw_input("What file would you like to use for the leaders? : ")
+
+if donors_file == '':
+    donors_file = 'testDonors2013.csv'
+    print("You are using " + donors_file)
+
+elif not os.path.isfile('Input/' + donors_file):
+    sys.exit("Sorry, that file doesn't exist, please check that the file was put into the correct folder")
+
+if leaders_file == '':
+    leaders_file = 'testLeaders2013.csv'
+    print("You are using " + leaders_file)
+elif not os.path.isfile('Input/' + leaders_file):
+    sys.exit("Sorry, that file doesn't exist, please check that the file was put into the correct folder")
+
+
+print donors_file
+print leaders_file
+
+print os.path.isfile('Input/'+donors_file)
 
 # Opens Donor file and reads it into an array
-with open(os.path.join('Input', 'testDonors2013.csv'), 'rb') as f:
+with open(os.path.join('Input', donors_file), 'rb') as f:
     reader = csv.reader(f)
     donorArray = list(reader)
 
@@ -25,7 +48,7 @@ writefile("Output", "Full Donor.csv", ["Company", "Contact", "Reason for Thankin
 
 print "The full donor list has been made"
 
-with open(os.path.join('Input', 'testLeaders2013.csv'), 'rb') as f:
+with open(os.path.join('Input', leaders_file), 'rb') as f:
     reader = csv.reader(f)
     leaderArray = list(reader)
 
